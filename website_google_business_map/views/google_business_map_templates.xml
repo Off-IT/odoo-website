@@ -1,0 +1,45 @@
+<odoo>
+
+    <!-- This record will create the building block and its layout -->
+    <template id="s_google_business_map" name="Business Map">
+        <section class="s_google_business_map">
+            <div class="media_iframe_video" t-attf-data-src="{{ website.social_googleplus }}"></div>
+        </section>
+    </template>
+
+    <!-- This record will create a preview of the building block in the left menu from where you choose the blocks -->
+    <template id="add_google_business_map_to_bar" inherit_id="website.snippets" name="Place into building blocks bar">
+        <xpath expr="//div[@id='snippet_feature']" position="inside">
+            <div class="o_panel_body">
+                <t t-snippet="website_google_business_map.s_google_business_map"
+                   t-thumbnail="/website_google_business_map/static/img/snippet_thumb.png"/>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- This record will create the options for the snippet -->
+    <template id="s_google_business_map_opt" name="Snippet Google Business Map Options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='background']" position="before">
+            <div data-selector=".s_google_business_map"> <!-- Options group -->
+                <li class="dropdown-submenu">
+                    <a href="#">Size</a>
+                    <div class="dropdown-menu"> <!-- Options list -->
+                        <a href="#" class="dropdown-item" data-select-class="opt_1000">1000 px</a>
+                        <a href="#" class="dropdown-item" data-select-class="opt_500">500 px</a>
+                        <a href="#" class="dropdown-item" data-select-class="opt_400">400 px</a>
+                        <a href="#" class="dropdown-item" data-select-class="opt_300">300 px</a>
+                        <a href="#" class="dropdown-item" data-select-class="opt_250">250 px</a>
+                    </div>
+                </li>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- This record creates the style sheet used by the snippet -->
+    <template id="mystyle" name="My style" inherit_id="website.assets_frontend">
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/website_google_business_map/static/scss/style.scss"/>
+        </xpath>
+    </template>
+
+</odoo>
